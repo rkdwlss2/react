@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import './App.css';
-import Sub from './Sub';
 
 function App() {
   // let list = [1, 2, 3];
-  const [number, setNumber] = useState(1); // react 안에 hooks 라이브러리 상태값이 됨
-  //let number = 1;
-  const add = () => {
-    setNumber(number + 1); // 리엑트 한테 number값 변경할께 라고 요청
-    console.log('add', number);
+  const [num, setNum] = useState(5);
+  console.log(`App 실행됨`);
+
+  let sample = [
+    { id: 1, name: '홍길동' },
+    { id: 2, name: '임꺽정' },
+    { id: 3, name: '장보고' },
+    { id: 4, name: '코스' },
+  ];
+
+  //다운로드 받음
+  const [users, setUsers] = useState(sample);
+
+  const download = () => {
+    // const a = sample.concat({ id: 5, name: '조자룡' });
+    // console.log(sample);
+    setUsers([...sample, { id: num, name: '조자룡' }]);
+    setNum(num + 1);
   };
 
   return (
     <div>
-      <div>
-        <h1>숫자 : {number}</h1>
-        <button onClick={add}>더하기</button>
-        <Sub />
-      </div>
+      <button onClick={download}>다운로드</button>
+      {users.map((u) => (
+        <h1 key={u.id}>
+          {u.id}, {u.name}
+        </h1>
+      ))}
     </div>
   );
 }
