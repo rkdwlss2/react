@@ -47,6 +47,30 @@
     //a5.forEach((n)=>{console.log(n);}); // 리턴 못함.
     const b5 = a5.map((n)=>n+10); // const b5 = [...a5];
     console.log(`b5 값은 : ${b5}`); 
+
+    const data = {phone:"222"};
+    const a6 = {id:1,name:"홍길동"};
+    const b6 = {...a6,...data};
+    console.log(b6);
+
+    const users = [
+        {id:1,name:"구태모",phone:"2222"},
+        {id:2,name:"이대엽",phone:"3333"},
+        {id:3,name:"오승훈",phone:"4444"}
+    ];
+
+    const updateUserDto = {
+        id:2,name:"홍길동"
+    };
+
+    const newUsers = users.map(u => u.id===updateUserDto.id?{...u,...updateUserDto}:u);
+    console.log(`newUsers 값은`,newUsers); // [[1,2]]
+
+
+     //users[1].name = updateUserDto.name;
+
+
+     console.log(users);
 </script>
     
 </body>
