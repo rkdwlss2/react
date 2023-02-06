@@ -1,40 +1,43 @@
-import './App.css';
-
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 function App() {
-  const [data, setData] = useState(0);
-  const [search, setSearch] = useState(0);
+  const [list, setList] = useState([1, 2, 3, 4]);
+  const [str, setStr] = useState('합계');
 
-  const download = () => {
-    //다운로드 받고 (통신)
-    let downloadData = 5;
-    setData(downloadData);
+  const getAddResult = () => {
+    let sum = 0;
+    list.forEach((i) => (sum = sum + i));
+    console.log('sum 함수 실행됨', sum);
+    return sum;
   };
 
-  // 실행시점: (1) App() 함수가 최초 실행될때
-  // (2) 상태 변수가 변경될때 또 실행됨
-  useEffect(() => {
-    console.log('App() useEffect 실행됨');
-    download();
-  }, [search]);
+  const addResult = useMemo(() => getAddResult(), [list]);
+
   return (
     <div>
       <button
         onClick={() => {
-          setSearch(2);
+          setStr('안녕');
         }}
       >
-        검색
+        문자 변경
       </button>
-      <h1>데이터 :{data}</h1>
+
       <button
         onClick={() => {
-          setData(data + 1);
+          setList([...list, 10]);
         }}
       >
-        더하기
+        리스트값 추가
       </button>
+      <div>
+        {list.map((i) => (
+          <h1 key={i}>{i}</h1>
+        ))}
+      </div>
+      <div>
+        {str}:{addResult}
+      </div>
     </div>
   );
 }
