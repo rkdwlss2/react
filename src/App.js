@@ -1,38 +1,16 @@
-import React, { createRef, useRef, useState } from 'react';
-// useRef(디자인)
-// dom을 변경할 때 사용
+import './App.css';
+import { Route } from 'react-router-dom';
+import ListPage from './pages/ListPage';
+import WritePage from './pages/WritePage';
+import Navigation from './components/Navigation';
 
 function App() {
-  const myRef = useRef(null);
-
-  const [list, setList] = useState([
-    { id: 1, name: '길동' },
-    { id: 2, name: '꺽정' },
-  ]);
-
-  const myRefs = Array.from({ length: list.length }).map(() => createRef());
-
   return (
     <div>
-      <button
-        onClick={() => {
-          console.log(list.length, myRefs);
-          console.log(myRef);
-          console.log(myRef.current);
-          //myRef.current.style.backgroundColor = 'red';
+      <Navigation />
+      <Route path='/' exact={true} component={ListPage} />
+      <Route path='/write' exact={true} component={WritePage} />
 
-          myRefs[1].current.style.backgroundColor = 'red';
-          setList([...list]);
-        }}
-      >
-        색변경
-      </button>
-      <div ref={myRef}>박스</div>
-      {list.map((user, index) => (
-        <h1 ref={myRefs[index]} key={index}>
-          {user.name}
-        </h1>
-      ))}
     </div>
   );
 }
