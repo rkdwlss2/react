@@ -1,16 +1,12 @@
 import './App.css';
-import { Route } from 'react-router-dom';
 import ListPage from './pages/ListPage';
-import WritePage from './pages/WritePage';
-import Navigation from './components/Navigation';
+import React from 'react';
+
 
 function App() {
   return (
     <div>
-      <Navigation />
-      <Route path='/' exact={true} component={ListPage} />
-      <Route path='/write' exact={true} component={WritePage} />
-
+      <ListPage />
     </div>
   );
 }
