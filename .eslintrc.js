@@ -19,5 +19,6 @@ module.exports = {
     "rules": {
         "no-unused-vars" : "off",
         "react/jsx-key" : "off",
+        "react/prop-types" : "off",
     }
 }

@@ -32,8 +32,8 @@ const ListPage = () => {
         // ListPage의 setPosts에 무엇을 담아야 함? 
         //let post = {id:6,title:"input값"};
         e.preventDefault();// form 태그가 하려는 액션을 중지 시켜야함
-        setPosts([...posts,post]);
-        setNo(no+1);
+        setPosts([...posts, { ...post, id: no }]);
+        setNo(no=>no+1);
     }
 
     const handleForm = (e) => {
@@ -45,11 +45,12 @@ const ListPage = () => {
             [e.target.name]:e.target.value,
             id:no
         });
+        
     }
     return (
         <div>
             <h1>리스트</h1>
-            <form onSubmit={handleWrite}>
+            <form onSubmit={handleForm}>
                 <input type='text' placeholder='제목을 입력하세요...' value={post.title} onChange={handleForm} name='title'/>
                 <input type='text' placeholder='내용을 입력하세요...' value={post.content} onChange={handleForm} name='content'/>
                 <button type='button' onClick={handleWrite}>글쓰기</button>
